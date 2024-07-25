@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let indiceDaLista = 0;
+ 
+        function adicionarItem() {
+            const inputDoUsuario = document.getElementById('texto-do-usuario');
+            const textoDigitado = inputDoUsuario.value;
+ 
+            inputDoUsuario.value = '';
+ 
+            const lista = document.getElementById('lista');
+ 
+            const item = document.createElement('li');
+            item.id = `item-${indiceDaLista}`;
+            item.innerHTML = `
+                <input type="checkbox" name="item-${indiceDaLista}" id="checkbox-${indiceDaLista}">
+                ${textoDigitado}
+                <button onclick="removerItem('${item.id}')">Remover</button>
+            `;
+ 
+            lista.appendChild(item);
+ 
+            indiceDaLista++;
+        }
+
+        function removerItem(itemId) {
+            const item = document.getElementById(itemId);
+            item.remove();
+        }
+    </script>
+</head>
+<body>
+    <ul id="lista">
+    </ul>
+    <button onclick="adicionarItem()">Add item</button>
+    <input type="text" id="texto-do-usuario">
+</body>
+</html>
